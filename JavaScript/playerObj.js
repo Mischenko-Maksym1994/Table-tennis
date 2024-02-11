@@ -1,31 +1,41 @@
+const playersName = ["Вакуленко", "Вовк", "Киреу", "Реутов", "Овчаров", "Яковлев",
+    "Похил", "Спасский", "Семченко", "Мищенко"];
+
+const gamesDay = [];
 // const player = {
 //     name: "name",
 //     games: [],
 //     totalGame: 0,
 //     wins: 0,
 
+console.log(`Всего игроков ${playersName.length}`);
 
-// }
-
-// console.log(player);
-
-// const Kolya = Object.create(player);
-// Kolya.name = "Kolya";
-// Kolya.games = [0, 1, 1, 1, 0];
-
-// console.log(Kolya);
-
-
-
+const btnGeneration = document.querySelector(".js-btn");
+const firstNumber = document.querySelector(".js-firstNumber");
+const secondNumber = document.querySelector(".js-secondNumber");
 
 const minValue = 1;
 const maxValue = 45;
 
+
+
 function randomTeamNumber() {
-    const minValue = 1;
-    const maxValue = 45;
-    return Math.random() * (maxValue - minValue) + minValue;
+    const result = Math.floor(Math.random() * (maxValue - minValue)) + minValue;
+    return result;
 }
 
-console.log(randomTeamNumber());
+btnGeneration.addEventListener("click", createNumber);
 
+function createNumber(e) {
+    e.preventDefault();
+    const firstTeam = randomTeamNumber();
+    const secondTeam = randomTeamNumber();
+
+    if (firstTeam !== secondTeam) {
+        firstNumber.textContent = firstTeam;
+        secondNumber.textContent = secondTeam;
+    }
+}
+// () => {
+//     const number = randomTeamNumber();
+//     firstNumber.textContent = number;
