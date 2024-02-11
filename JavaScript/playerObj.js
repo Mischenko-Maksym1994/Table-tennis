@@ -14,28 +14,24 @@ const btnGeneration = document.querySelector(".js-btn");
 const firstNumber = document.querySelector(".js-firstNumber");
 const secondNumber = document.querySelector(".js-secondNumber");
 
+btnGeneration.addEventListener("click", createNumber);
+
 const minValue = 1;
 const maxValue = 45;
-
-
 
 function randomTeamNumber() {
     const result = Math.floor(Math.random() * (maxValue - minValue)) + minValue;
     return result;
 }
 
-btnGeneration.addEventListener("click", createNumber);
-
 function createNumber(e) {
     e.preventDefault();
     const firstTeam = randomTeamNumber();
     const secondTeam = randomTeamNumber();
-
     if (firstTeam !== secondTeam) {
         firstNumber.textContent = firstTeam;
         secondNumber.textContent = secondTeam;
     }
+    gamesDay.push(`${firstTeam} + ${secondTeam}`);
+    console.log(gamesDay);
 }
-// () => {
-//     const number = randomTeamNumber();
-//     firstNumber.textContent = number;
