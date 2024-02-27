@@ -9,6 +9,7 @@ const gamesDay = [];
 //     wins: 0,
 
 console.log(`Всего игроков ${playersName.length}`);
+console.log(playersName);
 
 const btnGeneration = document.querySelector(".js-btn");
 const firstNumber = document.querySelector(".js-firstNumber");
@@ -35,3 +36,4 @@ function createNumber(e) {
     gamesDay.push(`${firstTeam} + ${secondTeam}`);
     console.log(gamesDay);
 }
+

@@ -5,7 +5,8 @@
     align-items: center;
     
 
-    /* width: 300px; */
+    width: auto;
+    padding: 25px;
     height: auto;
     border: solid 1px gray;
     border-radius: 10px;
