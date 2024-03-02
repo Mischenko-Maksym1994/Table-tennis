@@ -1,7 +1,7 @@
 .box {
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     
 
@@ -11,4 +11,10 @@
     border: solid 1px gray;
     border-radius: 10px;
     
+}
+
+.players_gaming_session {
+    margin-right: 20px;
+    border: solid 1px;
+    border-radius: 5px;
 }
