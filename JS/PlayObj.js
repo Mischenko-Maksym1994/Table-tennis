@@ -11,7 +11,8 @@ const gamesDay = [];
 console.log(`Всего игроков ${playersName.length}`);
 console.dir(playersName);
 
-const sortNamesPlayers = playersName.map(player => player.toUpperCase()).toSorted();
+const nameToLowerCase = playersName.map(player => player.toUpperCase()).toSorted();
+const sortNamesPlayers = playersName.toSorted();
 console.log(sortNamesPlayers);
 
 class Team {
@@ -65,14 +66,9 @@ function createUniqueTeam(array) {
              
             if (array[a].player1 === array[i].player2
             && array[a].player2 === array[i].player1) {
-                    // console.log("такая команда уже есть!!!");
-                    let indexCopyTeam = i;
-                    b.splice(indexCopyTeam, 1);
-                    // console.log(indexCopyTeam);
+                    //такая команда уже есть!!!//////
+                    b.splice(i, 1);
             }
-            // else {
-            //     console.log("такой команды нет")
-            // };
         };
     };
 };
