@@ -11,11 +11,8 @@ const gamesDay = [];
 console.log(`Всего игроков ${playersName.length}`);
 console.dir(playersName);
 
-
-const toUpperCasePlayers = playersName.map(player => player.toUpperCase());
-const sortNamesPlayers = toUpperCasePlayers.toSorted();
+const sortNamesPlayers = playersName.map(player => player.toUpperCase()).toSorted();
 console.log(sortNamesPlayers);
-
 
 class Team {
     constructor(player1, player2, id, arrayGame = [], totalGame=0, wins = 0, winPercentage = 0) {
@@ -57,26 +54,25 @@ function createTeam(array) {
 createTeam(sortNamesPlayers);
 console.dir(arrayTeam);
 
-
 /////////////////////////////////unique teams//////////////////////////////////////
-const b = [...arrayTeam];
+let b = [...arrayTeam];
 
 function createUniqueTeam(array) {
     
     for (let a = 0; a < array.length; a += 1) {
-        
+   
         for (let i = 0; i < array.length; i += 1) {
              
             if (array[a].player1 === array[i].player2
             && array[a].player2 === array[i].player1) {
-                    console.log("такая команда уже есть!!!");
+                    // console.log("такая команда уже есть!!!");
                     let indexCopyTeam = i;
                     b.splice(indexCopyTeam, 1);
-                    console.log(indexCopyTeam);
-
-            } else {
-                console.log("такой команды нет")
-            };
+                    // console.log(indexCopyTeam);
+            }
+            // else {
+            //     console.log("такой команды нет")
+            // };
         };
     };
 };
@@ -84,8 +80,16 @@ function createUniqueTeam(array) {
 createUniqueTeam(b);
 console.dir(b);
 
+///////////////////////////////add index for team////////////////////
 
+function addIndex(array) {
+    for (let i = 0; i < array.length; i += 1) {
+        array[i].id = i + 1;
+    }
+};
 
+addIndex(b);
+console.log(b);
 
 ////start random number //////
 
@@ -96,7 +100,7 @@ const secondNumber = document.querySelector(".js-secondNumber");
 btnGeneration.addEventListener("click", createNumber);
 
 const minValue = 1;
-const maxValue = 45;
+const maxValue = b.length + 1;
 
 function randomTeamNumber() {
     const result = Math.floor(Math.random() * (maxValue - minValue)) + minValue;
@@ -107,11 +111,21 @@ function createNumber(e) {
     e.preventDefault();
     const firstTeam = randomTeamNumber();
     const secondTeam = randomTeamNumber();
-    if (firstTeam !== secondTeam) {
-        firstNumber.textContent = firstTeam;
-        secondNumber.textContent = secondTeam;
+
+    let firstCheck = b[firstTeam].player1 !== b[secondTeam].player1 &&
+        b[firstTeam].player1 !== b[secondTeam].player2;
+    let secondCheck = b[firstTeam].player2 !== b[secondTeam].player1 &&
+        b[firstTeam].player2 !== b[secondTeam].player2;
+    
+    
+    // firstTeam !== secondTeam
+
+    if (firstCheck && secondCheck) {
+        firstNumber.textContent = `${b[firstTeam].id} ${b[firstTeam].player1} и ${b[firstTeam].player2}`;
+        secondNumber.textContent = `${b[secondTeam].id} ${b[secondTeam].player1} и ${b[secondTeam].player2}`;
     }
     gamesDay.push(`${firstTeam} + ${secondTeam}`);
     console.log(gamesDay);
 }
 
+/////////////////////
