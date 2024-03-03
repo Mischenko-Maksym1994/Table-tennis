@@ -111,15 +111,14 @@ function createNumber(e) {
     e.preventDefault();
     const firstTeam = randomTeamNumber();
     const secondTeam = randomTeamNumber();
-
+    
+    // firstTeam !== secondTeam
     let firstCheck = b[firstTeam].player1 !== b[secondTeam].player1 &&
         b[firstTeam].player1 !== b[secondTeam].player2;
     let secondCheck = b[firstTeam].player2 !== b[secondTeam].player1 &&
         b[firstTeam].player2 !== b[secondTeam].player2;
     
-    
-    // firstTeam !== secondTeam
-
+        // firstTeam !== secondTeam
     if (firstCheck && secondCheck) {
         firstNumber.textContent = `${b[firstTeam].id} ${b[firstTeam].player1} и ${b[firstTeam].player2}`;
         secondNumber.textContent = `${b[secondTeam].id} ${b[secondTeam].player1} и ${b[secondTeam].player2}`;
