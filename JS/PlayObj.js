@@ -9,7 +9,7 @@ const gamesDay = [];
 //     wins: 0,
 
 console.log(`Всего игроков ${playersName.length}`);
-console.log(playersName);
+console.dir(playersName);
 
 
 const toUpperCasePlayers = playersName.map(player => player.toUpperCase());
@@ -18,9 +18,10 @@ console.log(sortNamesPlayers);
 
 
 class Team {
-    constructor(player1, player2, arrayGame = [], totalGame=0, wins = 0, winPercentage = 0) {
+    constructor(player1, player2, id, arrayGame = [], totalGame=0, wins = 0, winPercentage = 0) {
         this.player1 = player1;
         this.player2 = player2;
+        this.id = id;
         this.arrayGame = arrayGame;
         this.totalGame = totalGame;
         this.wins = wins;
@@ -43,8 +44,6 @@ function createTeam(array) {
                     newT.player1 = array[a];
                     newT.player2 = array[i];
                     arrayTeam.push(newT);
-                    // const newTeam = `${array[a]} ${array[i]}`;
-                    // arrayTeam.push(newTeam); 
                 } else {
                     continue;
                 } 
@@ -58,14 +57,35 @@ function createTeam(array) {
 createTeam(sortNamesPlayers);
 console.dir(arrayTeam);
 
-////unique teams////
-const uniqueTeam = [];
 
-// for (element of arrayTeam) {
-//     if (uniqueTeam.includes(element) {
-//         continue;
-//     } )
-// }
+/////////////////////////////////unique teams//////////////////////////////////////
+const b = [...arrayTeam];
+
+function createUniqueTeam(array) {
+    
+    for (let a = 0; a < array.length; a += 1) {
+        
+        for (let i = 0; i < array.length; i += 1) {
+             
+            if (array[a].player1 === array[i].player2
+            && array[a].player2 === array[i].player1) {
+                    console.log("такая команда уже есть!!!");
+                    let indexCopyTeam = i;
+                    b.splice(indexCopyTeam, 1);
+                    console.log(indexCopyTeam);
+
+            } else {
+                console.log("такой команды нет")
+            };
+        };
+    };
+};
+
+createUniqueTeam(b);
+console.dir(b);
+
+
+
 
 ////start random number //////
 
