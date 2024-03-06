@@ -18,3 +18,26 @@
     border: solid 1px;
     border-radius: 5px;
 }
+
+.border_element {
+    width: auto;
+    padding: 25px;
+    height: auto;
+    border: solid 1px;
+    border-radius: 5px;
+}
+
+.generation_team {
+    min-width: 250px;
+}
+
+.players_list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.players_list_item {
+    display: inline-block;
+    margin-left: 15px;
+}

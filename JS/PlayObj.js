@@ -1,3 +1,7 @@
+const btnAddPlayer = document.querySelector("btn_add_player");
+// btnAddPlayer.addEventListener("click", addPlayer);
+
+
 const playersName = ["Вакуленко", "Вовк", "Киреу", "Реутов", "Овчаров", "Яковлев",
     "Похил", "Спасский", "Семченко", "Мищенко"];
 
@@ -14,6 +18,23 @@ console.dir(playersName);
 const nameToLowerCase = playersName.map(player => player.toUpperCase()).toSorted();
 const sortNamesPlayers = playersName.toSorted();
 console.log(sortNamesPlayers);
+
+///////////////////////////show players list/////////
+const jsPlayerList = document.querySelector(".js_players_list");
+
+const markup = sortNamesPlayers
+  .map((name) => `<li class="players_list_item">
+                <p class="player_name">${name}</p>
+                </li>`)
+  .join("");
+
+jsPlayerList.insertAdjacentHTML("beforeend", markup);
+/////////////////////////////////////////////////////////
+
+
+
+
+//////////////////////////////////class Team/////////////////////////////
 
 class Team {
     constructor(player1, player2, id, arrayGame = [], totalGame=0, wins = 0, winPercentage = 0) {
@@ -74,7 +95,7 @@ function createUniqueTeam(array) {
 };
 
 createUniqueTeam(b);
-console.dir(b);
+// console.dir(b);
 
 ///////////////////////////////add index for team////////////////////
 
@@ -95,7 +116,7 @@ const secondNumber = document.querySelector(".js-secondNumber");
 
 btnGeneration.addEventListener("click", createNumber);
 
-const minValue = 1;
+const minValue = 0;
 const maxValue = b.length + 1;
 
 function randomTeamNumber() {
