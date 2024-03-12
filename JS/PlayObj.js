@@ -1,38 +1,37 @@
-const btnAddPlayer = document.querySelector("btn_add_player");
-// btnAddPlayer.addEventListener("click", addPlayer);
+const btnAddPlayer = document.querySelector(".btn_add");
+const inputAdd = document.querySelector("#name-input");
+const output = document.querySelector(".outputName");
 
+let newPlayer = "";
+inputAdd.addEventListener("input", (event) => {
+    output.textContent = event.currentTarget.value;
+    newPlayer = output.textContent;
+});
+    
+btnAddPlayer.addEventListener("click", addPlayer);
 
 const playersName = ["Вакуленко", "Вовк", "Киреу", "Реутов", "Овчаров", "Яковлев",
     "Похил", "Спасский", "Семченко", "Мищенко"];
 
-const gamesDay = [];
-// const player = {
-//     name: "name",
-//     games: [],
-//     totalGame: 0,
-//     wins: 0,
+function addPlayer() {
+    // e.preventDefault();
+    if (playersName.includes(newPlayer)) {
+        console.log(`игрок ${newPlayer} уже есть`);
+        return;
+    }
+    playersName.push(newPlayer);
+    console.log(newPlayer);
+    console.dir(playersName);
+};
 
-console.log(`Всего игроков ${playersName.length}`);
-console.dir(playersName);
+
+
+
+const allPlayers = playersName.length;
 
 const nameToLowerCase = playersName.map(player => player.toUpperCase()).toSorted();
 const sortNamesPlayers = playersName.toSorted();
 console.log(sortNamesPlayers);
-
-///////////////////////////show players list/////////
-const jsPlayerList = document.querySelector(".js_players_list");
-
-const markup = sortNamesPlayers
-  .map((name) => `<li class="players_list_item">
-                <p class="player_name">${name}</p>
-                </li>`)
-  .join("");
-
-jsPlayerList.insertAdjacentHTML("beforeend", markup);
-/////////////////////////////////////////////////////////
-
-
-
 
 //////////////////////////////////class Team/////////////////////////////
 
@@ -46,6 +45,8 @@ class Team {
         this.wins = wins;
         this.winPercentage = winPercentage;
     }
+
+
 }
 ///create array with all variable team////
 let arrayTeam = [];
@@ -53,8 +54,7 @@ let arrayTeam = [];
 function createTeam(array) {
         
     for (let a = 0; a < array.length; a += 1) {
-        // let a = 0;
-        
+                
         for (let i = 0; i < array.length; i += 1) {
             if (a < array.length) {
                 if (array[a] !== array[i]) {
@@ -77,7 +77,7 @@ createTeam(sortNamesPlayers);
 console.dir(arrayTeam);
 
 /////////////////////////////////unique teams//////////////////////////////////////
-let b = [...arrayTeam];
+let teamArray = [...arrayTeam];
 
 function createUniqueTeam(array) {
     
@@ -88,14 +88,13 @@ function createUniqueTeam(array) {
             if (array[a].player1 === array[i].player2
             && array[a].player2 === array[i].player1) {
                     //такая команда уже есть!!!//////
-                    b.splice(i, 1);
+                    teamArray.splice(i, 1);
             }
         };
     };
 };
 
-createUniqueTeam(b);
-// console.dir(b);
+createUniqueTeam(teamArray);
 
 ///////////////////////////////add index for team////////////////////
 
@@ -105,10 +104,10 @@ function addIndex(array) {
     }
 };
 
-addIndex(b);
-console.log(b);
+addIndex(teamArray);
+console.log(teamArray);
 
-////start random number //////
+////////////////////////////////start random number ///////////////
 
 const btnGeneration = document.querySelector(".js-btn");
 const firstNumber = document.querySelector(".js-firstNumber");
@@ -117,7 +116,7 @@ const secondNumber = document.querySelector(".js-secondNumber");
 btnGeneration.addEventListener("click", createNumber);
 
 const minValue = 0;
-const maxValue = b.length + 1;
+const maxValue = teamArray.length + 1;
 
 function randomTeamNumber() {
     const result = Math.floor(Math.random() * (maxValue - minValue)) + minValue;
@@ -130,18 +129,67 @@ function createNumber(e) {
     const secondTeam = randomTeamNumber();
     
     // firstTeam !== secondTeam
-    let firstCheck = b[firstTeam].player1 !== b[secondTeam].player1 &&
-        b[firstTeam].player1 !== b[secondTeam].player2;
-    let secondCheck = b[firstTeam].player2 !== b[secondTeam].player1 &&
-        b[firstTeam].player2 !== b[secondTeam].player2;
+    let firstCheck = teamArray[firstTeam].player1 !== teamArray[secondTeam].player1 &&
+        teamArray[firstTeam].player1 !== teamArray[secondTeam].player2;
+    let secondCheck = teamArray[firstTeam].player2 !== teamArray[secondTeam].player1 &&
+        teamArray[firstTeam].player2 !== teamArray[secondTeam].player2;
     
-        // firstTeam !== secondTeam
     if (firstCheck && secondCheck) {
-        firstNumber.textContent = `${b[firstTeam].id} ${b[firstTeam].player1} и ${b[firstTeam].player2}`;
-        secondNumber.textContent = `${b[secondTeam].id} ${b[secondTeam].player1} и ${b[secondTeam].player2}`;
+        firstNumber.textContent = `${teamArray[firstTeam].id} ${teamArray[firstTeam].player1} и ${teamArray[firstTeam].player2}`;
+        secondNumber.textContent = `${teamArray[secondTeam].id} ${teamArray[secondTeam].player1} и ${teamArray[secondTeam].player2}`;
     }
     gamesDay.push(`${firstTeam} + ${secondTeam}`);
     console.log(gamesDay);
 }
 
 /////////////////////
+const gamesDay = [];
+
+///////////////////////////show players list/////////
+const jsPlayerList = document.querySelector(".js_players_list");
+const jsQuantityPlayers = document.querySelector(".js-quantityPlayers");
+
+jsQuantityPlayers.textContent = `(всего ${playersName.length} игроков):`;
+
+const markup = sortNamesPlayers
+  .map((name) => `<li class="players_list_item">
+                <p class="player_name">${name}</p>
+                </li>`)
+  .join("");
+
+jsPlayerList.insertAdjacentHTML("beforeend", markup);
+/////////////////////////////////////////////////////////
+
+ /////////////////////////show teams list//////////////////
+const jsTeamList = document.querySelector(".js_team_list");
+
+const markupTeam = teamArray
+  .map((team) => `<li class="team_list_item">
+                <p class="team_name">№${team.id}: ${team.player1} и ${team.player2}</p>
+                </li>`)
+  .join("");
+
+jsTeamList.insertAdjacentHTML("beforeend", markupTeam);
+  
+////////////////////////////gaming session////////////////
+const sessionList = document.querySelector(".js_form_GS");
+
+const markupListPlayer = sortNamesPlayers
+  .map((player) => `<label>
+    <input type="checkbox" name="player" value="${player}"/>
+    ${player}
+  </label>`)
+  .join("");
+
+sessionList.insertAdjacentHTML("beforebegin", markupListPlayer);
+
+let readyToPlay = [];
+
+// sessionList.addEventListener("input", readyPlayers);
+
+// function readyPlayers(e) {
+    
+//     // readyToPlayer.push(toReady);
+// };
+
+//////////////////////////////////////add game to team///////

@@ -14,29 +14,25 @@
         <div>
             <input type="text" id="name-input" 
             placeholder="Введите имя игрока">
-            <button type="submit" class="btn btn_add_player">Добавить игрока</button>
+            <p class="outputName"></p>
+            <button type="submit" class="btn btn_add">Добавить игрока</button>
         </div>
 
         <div class="regisration_players">
-            <h3 class="second_title">Список игроков</h3>
+            <h3 class="second_title">Список игроков <span class="js-quantityPlayers"></span></h3>
             <ul class="players_list js_players_list">
             </ul>
         </div>
-    </div>
 
-    <div class="gaming_session">
-        <div>
-            <ul class="gaming_session_list">
-                <li>
-                    <input type="radio" class="ready_player">
-                    Player
-                </li>
+        <div class="team">
+            <h2>Список всех возможных команд с игроками</h2>
+            <ul class="team_list js_team_list">
             </ul>
         </div>
     </div>
 
     <div class="box">
-        
+        <h2></h2>
         <div class="generation_team">
             <p>Команда № <span class="js-firstNumber"></span>
             </p>      
@@ -44,8 +40,37 @@
             </p>
             <button class="btn js-btn">Сгенерировать</button>
         </div>
-
     </div>
+
+    <div class="gaming_session">
+            <h3>Параметры для составления партий</h3>
+            <form>
+                <label>
+                    Количество партий
+                    <input type="number" name="maxGame" 
+                    placeholder="Введите число">
+                </label>
+
+                <label>
+                    Количество игроков
+                    <input type="number" name="countPlayer"
+                    placeholder="Введите число">
+                </label>
+
+                <label>
+                    Минимальное кол-во партий для игрока
+                    <input type="number" name="minGame"
+                    placeholder="Введите число">
+                   <span class=""></span></label>
+            </form>
+
+            <form class="form_gaming_session js_form_GS">
+                <button type="submit">Подтвердить</button>
+            </form>
+    </div>
+
+    
+
     
     <!-- <script src="/JavaScript/logic.js"></script> -->
     <script src="./JS/PlayObj.js" type="module"></script>
