@@ -36,7 +36,8 @@ console.log(sortNamesPlayers);
 //////////////////////////////////class Team/////////////////////////////
 
 class Team {
-    constructor(player1, player2, id, arrayGame = [], totalGame=0, wins = 0, winPercentage = 0) {
+    constructor(player1, player2, id, arrayGame = [], totalGame = 0, wins = 0, winPercentage = 0,
+        seriesWins = 0, bestSeries = 0, gameDeadHeat) {
         this.player1 = player1;
         this.player2 = player2;
         this.id = id;
@@ -181,7 +182,7 @@ const markupListPlayer = sortNamesPlayers
   </label>`)
   .join("");
 
-sessionList.insertAdjacentHTML("beforebegin", markupListPlayer);
+sessionList.insertAdjacentHTML("afterbegin", markupListPlayer);
 
 let readyToPlay = [];
 

@@ -19,13 +19,13 @@
         </div>
 
         <div class="regisration_players">
-            <h3 class="second_title">Список игроков <span class="js-quantityPlayers"></span></h3>
+            <h2 class="second_title">Список игроков <span class="js-quantityPlayers"></span></h2>
             <ul class="players_list js_players_list">
             </ul>
         </div>
 
         <div class="team">
-            <h2>Список всех возможных команд с игроками</h2>
+            <h2 class="second_title">Список всех возможных команд с игроками</h2>
             <ul class="team_list js_team_list">
             </ul>
         </div>
@@ -42,34 +42,84 @@
         </div>
     </div>
 
+    <h3>Параметры для автоматического составления партий</h3>
     <div class="gaming_session">
-            <h3>Параметры для составления партий</h3>
-            <form>
-                <label>
+            
+            <form class="form_parametrs gaming_session_list">
+                <label class="form_item">
                     Количество партий
                     <input type="number" name="maxGame" 
                     placeholder="Введите число">
                 </label>
 
-                <label>
+                <label class="form_item">
                     Количество игроков
                     <input type="number" name="countPlayer"
                     placeholder="Введите число">
                 </label>
 
-                <label>
+                <label class="form_item">
                     Минимальное кол-во партий для игрока
                     <input type="number" name="minGame"
                     placeholder="Введите число">
                    <span class=""></span></label>
             </form>
 
-            <form class="form_gaming_session js_form_GS">
+            
+            <form class="form_gaming_session js_form_GS gaming_session_list">
+                <p>Отметить игроков готовых играть</p>
                 <button type="submit">Подтвердить</button>
             </form>
     </div>
 
-    
+    <div>
+        <h3>Записать результат игр</h3>
+        <form class="form_add_game">
+            <div class="form_team_add">
+                <label>
+                    № 1 команды
+                    <input type="number" name="idTeam" id="" class="form_item_number">
+                </label>
+                
+                <label>
+                    Игрок 1
+                    <input type="text" name="player1" id="">
+                </label>
+                <label>
+                    Игрок 2
+                    <input type="text" name="player2" id="">
+                </label>
+            </div>
+
+
+            <div>
+                <p>счет</p>
+                <label>
+                    <input type="number" name="idTeam" id="" class="form_item_number">
+                </label>
+                <label>
+                    <input type="number" name="idTeam" id="" class="form_item_number">
+                </label>
+            </div>
+
+            <div class="form_team_add">
+                <label>
+                    № 2 команды
+                    <input type="number" name="idTeam" id="" class="form_item_number">
+                </label>
+                
+                <label>
+                    Игрок 1
+                    <input type="text" name="player1" id="">
+                </label>
+                <label>
+                    Игрок 2
+                    <input type="text" name="player2" id="">
+                </label>
+            </div>
+        </form>
+
+    </div>
 
     
     <!-- <script src="/JavaScript/logic.js"></script> -->
