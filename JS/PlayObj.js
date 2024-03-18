@@ -12,6 +12,7 @@ btnAddPlayer.addEventListener("click", addPlayer);
 
 const playersName = ["Вакуленко", "Вовк", "Киреу", "Реутов", "Овчаров", "Яковлев",
     "Похил", "Спасский", "Семченко", "Мищенко"];
+    
 
 function addPlayer() {
     // e.preventDefault();
@@ -194,3 +195,15 @@ let readyToPlay = [];
 // };
 
 //////////////////////////////////////add game to team///////
+
+const selectTeam1 = document.querySelector(".js_choose_team1");
+const selectTeam2 = document.querySelector(".js_choose_team2");
+
+const markupChooseTeam = teamArray
+  .map((team) => `<option value="${team.id}">${team.player1} ${team.player2}</option>`)
+  .join("");
+
+selectTeam1.insertAdjacentHTML("afterbegin", markupChooseTeam);
+selectTeam2.insertAdjacentHTML("afterbegin", markupChooseTeam);
+
+const btnToAddGame = document.querySelector(".js_add_game");

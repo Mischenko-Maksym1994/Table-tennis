@@ -72,51 +72,33 @@
             </form>
     </div>
 
-    <div>
+    <div> 
         <h3>Записать результат игр</h3>
         <form class="form_add_game">
-            <div class="form_team_add">
+            
                 <label>
-                    № 1 команды
-                    <input type="number" name="idTeam" id="" class="form_item_number">
+                    Team 1
+                    <select name="chooseTeam" id="chooseTeam1" class="js_choose_team1"></select>
                 </label>
-                
-                <label>
-                    Игрок 1
-                    <input type="text" name="player1" id="">
-                </label>
-                <label>
-                    Игрок 2
-                    <input type="text" name="player2" id="">
-                </label>
-            </div>
 
 
-            <div>
-                <p>счет</p>
                 <label>
-                    <input type="number" name="idTeam" id="" class="form_item_number">
+                    <input type="number" name="" min="0" max="22"
+                    id="chooseTeam1" class="form_item_number">
                 </label>
                 <label>
-                    <input type="number" name="idTeam" id="" class="form_item_number">
+                    <input type="number" name="" min="0" max="22"
+                    id="chooseTeam2" class="form_item_number">
                 </label>
-            </div>
 
-            <div class="form_team_add">
+
                 <label>
-                    № 2 команды
-                    <input type="number" name="idTeam" id="" class="form_item_number">
+                    Team 2
+                    <select name="chooseTeam" id="chooseTeam2" class="js_choose_team2"></select>
                 </label>
-                
-                <label>
-                    Игрок 1
-                    <input type="text" name="player1" id="">
-                </label>
-                <label>
-                    Игрок 2
-                    <input type="text" name="player2" id="">
-                </label>
-            </div>
+
+                <button type="submit" class="btn js_add_game">Add</button>
+                        
         </form>
 
     </div>
