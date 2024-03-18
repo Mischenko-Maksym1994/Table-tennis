@@ -125,6 +125,7 @@ function randomTeamNumber() {
     return result;
 }
 
+
 function createNumber(e) {
     e.preventDefault();
     const firstTeam = randomTeamNumber();
@@ -207,3 +208,31 @@ selectTeam1.insertAdjacentHTML("afterbegin", markupChooseTeam);
 selectTeam2.insertAdjacentHTML("afterbegin", markupChooseTeam);
 
 const btnToAddGame = document.querySelector(".js_add_game");
+const dataGame = document.querySelector("#data-game");
+const scoreTeam1 = document.querySelector("#scoreTeam1");
+const scoreTeam2 = document.querySelector("#scoreTeam2");
+
+btnToAddGame.addEventListener("click", addGame);
+
+function addGame(e) {
+    e.preventDefault();
+
+    let newGameT1 = {data: dataGame.value};
+    const id1 = selectTeam1.value;
+    const id2 = selectTeam2.value;
+    
+    
+    newGameT1.id = id2;
+    newGameT1.score = scoreTeam2.value;    
+
+    teamArray[id1 - 1].arrayGame.push(newGameT1);
+    console.log(newGameT1);
+    console.dir(teamArray[id1 - 1]);
+
+    // console.log(dataGame.value);
+    // console.log(selectTeam1.value);
+    // console.log(scoreTeam1.value);
+    // console.log(selectTeam2.value);
+    // console.log(scoreTeam2.value);
+    console.log("игра добавлена");
+};

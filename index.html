@@ -75,29 +75,33 @@
     <div> 
         <h3>Записать результат игр</h3>
         <form class="form_add_game">
-            
+
+
+                <label>
+                    <input type="date" id="data-game">
+                </label>
                 <label>
                     Team 1
-                    <select name="chooseTeam" id="chooseTeam1" class="js_choose_team1"></select>
+                    <select name="chooseTeam" id="Team1" class="js_choose_team1"></select>
                 </label>
 
 
                 <label>
                     <input type="number" name="" min="0" max="22"
-                    id="chooseTeam1" class="form_item_number">
+                    id="scoreTeam1" class="form_item_number">
                 </label>
                 <label>
                     <input type="number" name="" min="0" max="22"
-                    id="chooseTeam2" class="form_item_number">
+                    id="scoreTeam2" class="form_item_number">
                 </label>
 
 
-                <label>
+                <label class="reverse_label">
+                    <select name="chooseTeam" id="Team2" class="js_choose_team2"></select>
                     Team 2
-                    <select name="chooseTeam" id="chooseTeam2" class="js_choose_team2"></select>
                 </label>
 
-                <button type="submit" class="btn js_add_game">Add</button>
+                <button type="submit" class="btn js_add_game">Добавить игру</button>
                         
         </form>
 
