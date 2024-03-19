@@ -197,6 +197,7 @@ let readyToPlay = [];
 
 //////////////////////////////////////add game to team///////
 
+const formAddGame = document.querySelector(".form_add_game");
 const selectTeam1 = document.querySelector(".js_choose_team1");
 const selectTeam2 = document.querySelector(".js_choose_team2");
 
@@ -217,22 +218,56 @@ btnToAddGame.addEventListener("click", addGame);
 function addGame(e) {
     e.preventDefault();
 
-    let newGameT1 = {data: dataGame.value};
-    const id1 = selectTeam1.value;
-    const id2 = selectTeam2.value;
-    
-    
-    newGameT1.id = id2;
-    newGameT1.score = scoreTeam2.value;    
+    const id1 = selectTeam1.value - 1; //
+    const id2 = selectTeam2.value - 1;
 
-    teamArray[id1 - 1].arrayGame.push(newGameT1);
-    console.log(newGameT1);
-    console.dir(teamArray[id1 - 1]);
+    let newGameT1 = {
+        data: dataGame.value,
+        id: id2 + 1,
+        score: scoreTeam1.value,
+        scoreT2: scoreTeam2.value,
+        team: `${teamArray[id2].player1} ${teamArray[id2].player2}`,
+    };
+    let newGameT2 = {
+        data: dataGame.value,
+        id: id1 + 1,
+        score: scoreTeam2.value,
+        scoreT1: scoreTeam1.value,
+        team: `${teamArray[id1].player1} ${teamArray[id1].player2}`,
+    };
+   
+    let checkTeam1 = teamArray[id1].player1 !== teamArray[id2].player1 &&
+        teamArray[id1].player1 !== teamArray[id2].player2;
+    let checkTeam2 = teamArray[id1].player2 !== teamArray[id2].player1 &&
+        teamArray[id1].player2 !== teamArray[id2].player2;
+    
+    let checkScore1 = scoreTeam1.value >= 0 && scoreTeam1.value <= 22;
+    let checkScore2 = scoreTeam2.value >= 0 && scoreTeam2.value <= 22;
+    let checkScore3 = scoreTeam1.value >= 21 || scoreTeam2.value >= 21;
+    let checkScore = scoreTeam1.value !== scoreTeam2.value;
 
-    // console.log(dataGame.value);
-    // console.log(selectTeam1.value);
-    // console.log(scoreTeam1.value);
-    // console.log(selectTeam2.value);
-    // console.log(scoreTeam2.value);
-    console.log("игра добавлена");
+
+    if (checkTeam1 && checkTeam2 && checkScore1 &&
+        checkScore2 && checkScore3 && checkScore) {
+        
+        let checkGame = teamArray[id1].arrayGame.some(id => id = id + 1);
+
+        if (checkGame) {
+            console.log("this game alredy add");
+                
+        } else {
+            teamArray[id1].arrayGame.push(newGameT1);
+            teamArray[id2].arrayGame.push(newGameT2);
+
+            console.log(newGameT1);
+            console.log(newGameT2);
+            console.log("игра добавлена");
+        }
+        
+    } else {
+        console.log("Error!");
+    };
 };
+
+
+// teamArray[id1].arrayGame.includes(id2)
