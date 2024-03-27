@@ -1,31 +1,73 @@
 const btnAddPlayer = document.querySelector(".btn_add");
-const inputAdd = document.querySelector("#name-input");
+const inputAdd = document.querySelector("#name");
 const output = document.querySelector(".outputName");
+const errorMessage = document.querySelector(".error_message");
+const formAddPlayer = document.querySelector(".form_add_player");
 
 let newPlayer = "";
-inputAdd.addEventListener("input", (event) => {
-    output.textContent = event.currentTarget.value;
-    newPlayer = output.textContent;
-});
-    
-btnAddPlayer.addEventListener("click", addPlayer);
+const playersName = [];
 
-const playersName = ["Вакуленко", "Вовк", "Киреу", "Реутов", "Овчаров", "Яковлев",
-    "Похил", "Спасский", "Семченко", "Мищенко"];
-    
+formAddPlayer.addEventListener("input", inputPlayer);
 
-function addPlayer() {
-    // e.preventDefault();
-    if (playersName.includes(newPlayer)) {
-        console.log(`игрок ${newPlayer} уже есть`);
-        return;
-    }
-    playersName.push(newPlayer);
-    console.log(newPlayer);
-    console.dir(playersName);
+// const playersName = ["Вакуленко", "Вовк", "Киреу", "Реутов", "Овчаров", "Яковлев",
+//     "Похил", "Спасский", "Семченко", "Мищенко"];
+
+function inputPlayer() {
+    const testName = formAddPlayer.elements.name.value;
+    output.textContent = testName;
+    errorMessage.textContent = "";
+    newPlayer = testName;
 };
 
+formAddPlayer.addEventListener("submit", addPlayer);
 
+function addPlayer(e) {
+    e.preventDefault();
+   
+    const testName = formAddPlayer.elements.name.value;
+    newPlayer = testName;
+
+    if (playersName.includes(newPlayer)) {
+        errorMessage.textContent = `игрок ${newPlayer} уже учавствует в турнире. Добавьте другого игрока!`;
+        console.log(`игрок ${newPlayer} уже есть`);
+        return;
+    } else if (newPlayer === "") {
+        errorMessage.textContent = "Неверное значение!"
+    }
+    else {
+        output.textContent = `Добро пожаловать ${newPlayer}! Регистрация прошла успешно!`;
+        playersName.push(newPlayer);
+
+        saveToLS(nameLS, playersName);
+
+        console.log(newPlayer);
+        console.dir(playersName);
+        formAddPlayer.reset();
+    }
+    
+};
+
+////////////////////////-local-storage////////////////////////
+
+const nameLS = "arrayPlayersName";
+
+function saveToLS(key = "", value = "") {
+    const jsonData = JSON.stringify(value);
+    localStorage.setItem(key, jsonData);
+};
+
+function loadToLS(key) {
+    const data = localStorage.getItem(key);
+
+    try {
+        const result = JSON.parse(key);
+        return result;
+    } catch (error) {
+        return data;
+    }
+};
+
+///////////////////////////////////////////////
 
 
 const allPlayers = playersName.length;
@@ -270,4 +312,4 @@ function addGame(e) {
 };
 
 
-// teamArray[id1].arrayGame.includes(id2)
+// BracketTree и Tournament.js

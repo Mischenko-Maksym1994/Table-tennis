@@ -11,12 +11,15 @@
     <h1>Hello!!</h1>
 
     <div class="registration">
-        <div>
-            <input type="text" id="name-input" 
-            placeholder="Введите имя игрока">
+        <form class="form_add_player">
+            <label>
+                <input type="text" id="name" 
+                placeholder="Введите имя игрока">
+            </label>
             <p class="outputName"></p>
+            <p class="error_message"></p>
             <button type="submit" class="btn btn_add">Добавить игрока</button>
-        </div>
+        </form>
 
         <div class="regisration_players">
             <h2 class="second_title">Список игроков <span class="js-quantityPlayers"></span></h2>
@@ -76,7 +79,6 @@
         <h3>Записать результат игр</h3>
         <form class="form_add_game">
 
-
                 <label>
                     <input type="date" id="data-game">
                 </label>
@@ -84,7 +86,6 @@
                     Team 1
                     <select name="chooseTeam" id="Team1" class="js_choose_team1"></select>
                 </label>
-
 
                 <label>
                     <input type="number" name="" min="0" max="22"
@@ -94,7 +95,6 @@
                     <input type="number" name="" min="0" max="22"
                     id="scoreTeam2" class="form_item_number">
                 </label>
-
 
                 <label class="reverse_label">
                     <select name="chooseTeam" id="Team2" class="js_choose_team2"></select>
