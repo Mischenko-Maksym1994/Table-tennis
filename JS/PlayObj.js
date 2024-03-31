@@ -4,8 +4,33 @@ const output = document.querySelector(".outputName");
 const errorMessage = document.querySelector(".error_message");
 const formAddPlayer = document.querySelector(".form_add_player");
 
+////////////////////////-local-storage////////////////////////
+
+const nameLS = "arrayPlayersName";
+
+function saveToLS(key = "", value = "") {
+    const jsonData = JSON.stringify(value);
+    localStorage.setItem(key, jsonData);
+};
+
+function loadToLS(key) {
+    const data = localStorage.getItem(key);
+
+    try {
+        const result = JSON.parse(key);
+        return result;
+    } catch (error) {
+        return data;
+    }
+};
+
+const loadNameToLS = loadToLS(nameLS);
+console.log(loadNameToLS);
+
+///////////////////////////////////////////////
+
 let newPlayer = "";
-const playersName = [];
+let playersName = loadNameToLS || [];
 
 formAddPlayer.addEventListener("input", inputPlayer);
 
@@ -36,6 +61,7 @@ function addPlayer(e) {
     }
     else {
         output.textContent = `Добро пожаловать ${newPlayer}! Регистрация прошла успешно!`;
+        console.log(playersName);
         playersName.push(newPlayer);
 
         saveToLS(nameLS, playersName);
@@ -44,33 +70,39 @@ function addPlayer(e) {
         console.dir(playersName);
         formAddPlayer.reset();
     }
+///////////////////////////////////////////////////copy//////
+    // e.preventDefault();
+   
+    // const testName = formAddPlayer.elements.name.value;
+    // newPlayer = testName;
+
+
+    // if (playersName.includes(newPlayer)) {
+    //     errorMessage.textContent = `игрок ${newPlayer} уже учавствует в турнире. Добавьте другого игрока!`;
+    //     console.log(`игрок ${newPlayer} уже есть`);
+    //     return;
+    // } else if (newPlayer === "") {
+    //     errorMessage.textContent = "Неверное значение!"
+    // }
+    // else {
+    //     output.textContent = `Добро пожаловать ${newPlayer}! Регистрация прошла успешно!`;
+    //     playersName.push(newPlayer);
+
+    //     saveToLS(nameLS, playersName);
+
+    //     console.log(newPlayer);
+    //     console.dir(playersName);
+    //     formAddPlayer.reset();
+    // }
+    //////copy//////
     
 };
 
-////////////////////////-local-storage////////////////////////
 
-const nameLS = "arrayPlayersName";
-
-function saveToLS(key = "", value = "") {
-    const jsonData = JSON.stringify(value);
-    localStorage.setItem(key, jsonData);
-};
-
-function loadToLS(key) {
-    const data = localStorage.getItem(key);
-
-    try {
-        const result = JSON.parse(key);
-        return result;
-    } catch (error) {
-        return data;
-    }
-};
-
-///////////////////////////////////////////////
 
 
 const allPlayers = playersName.length;
+console.log(allPlayers);
 
 const nameToLowerCase = playersName.map(player => player.toUpperCase()).toSorted();
 const sortNamesPlayers = playersName.toSorted();
