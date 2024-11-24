@@ -30,12 +30,12 @@ console.log(loadNameToLS);
 ///////////////////////////////////////////////
 
 let newPlayer = "";
-let playersName = loadNameToLS || [];
+// let playersName = loadNameToLS || [];
 
 formAddPlayer.addEventListener("input", inputPlayer);
 
-// const playersName = ["Вакуленко", "Вовк", "Киреу", "Реутов", "Овчаров", "Яковлев",
-//     "Похил", "Спасский", "Семченко", "Мищенко"];
+const playersName = ["Вакуленко", "Вовк", "Киреу", "Реутов", "Овчаров", "Яковлев",
+    "Похил", "Спасский", "Семченко", "Мищенко"];
 
 function inputPlayer() {
     const testName = formAddPlayer.elements.name.value;

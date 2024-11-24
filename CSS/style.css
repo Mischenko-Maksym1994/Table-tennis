@@ -1,3 +1,9 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
 li {
     list-style: none;
 }
@@ -127,3 +133,31 @@ li {
     display: flex;
     flex-direction: row;
 }
+/********************Players page****************/
+.cards-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.card-item {
+    flex-basis: calc(100% / 3 - 96px);
+    text-align: center;
+    padding: 10px;
+}
+.card-item-box {
+    border: 1px solid black;
+    padding: 15px;
+}
+.item-name {
+    margin-bottom: 20px;
+}
+.card-img {
+    display: block;
+    background-color: aqua;
+}
+.card-info-item {
+    display: flex;
+    justify-content: space-between;
+}
+
